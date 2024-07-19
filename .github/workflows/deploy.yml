@@ -16,7 +16,7 @@ jobs:
     - name: Install SSH Key
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.VPS_PRIVATE_KEY }}" | tr -d '\r' > cat ~/.ssh/id_rsa
+        echo "${{ secrets.VPS_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
 
     - name: Add VPS to known hosts
