@@ -22,11 +22,15 @@ jobs:
     - name: Add VPS to known hosts
       run: ssh-keyscan -H 209.126.3.236 >> ~/.ssh/known_hosts
 
-    - name: Debug SSH Connection
+    - name: Debug SSH Key and Connection
       run: |
-        ls -l ~/.ssh
+        echo "Contents of ~/.ssh directory:"
+        ls -la ~/.ssh
+        echo "Contents of id_rsa:"
         cat ~/.ssh/id_rsa
-        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no subic@209.126.3.236 'echo "SSH connection successful"'
+        echo "Contents of known_hosts:"
+        cat ~/.ssh/known_hosts
+        ssh -vvv -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no subic@209.126.3.236 'echo "SSH connection successful"'
 
     - name: Deploy to VPS
       run: |
