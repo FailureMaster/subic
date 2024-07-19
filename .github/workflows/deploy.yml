@@ -22,6 +22,12 @@ jobs:
     - name: Add VPS to known hosts
       run: ssh-keyscan -H 209.126.3.236 >> ~/.ssh/known_hosts
 
+    - name: Debug SSH Connection
+      run: |
+        ls -l ~/.ssh
+        cat ~/.ssh/id_rsa
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no subic@209.126.3.236 'echo "SSH connection successful"'
+
     - name: Deploy to VPS
       run: |
-        ssh -o StrictHostKeyChecking=no subic@209.126.3.236 'cd /public_html/ && git pull origin master && composer install && php artisan migrate'
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no subic@209.126.3.236 'cd /public_html/subic && git pull origin main && composer install && php artisan migrate'
