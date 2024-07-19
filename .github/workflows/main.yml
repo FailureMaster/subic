@@ -24,4 +24,4 @@ jobs:
 
     - name: Deploy to VPS
       run: |
-        ssh subic@209.126.3.236 'cd /public_html && git pull origin master && composer install && php artisan migrate'
+        ssh subic@209.126.3.236 'cd /public_html/subic && git pull origin master && composer install && php artisan migrate'
